@@ -32,7 +32,7 @@ internal class Program
     }
 
     static void StudentComparison(List<Student> students)
-    {        
+    {
         int student1 = 0;
         for (int student2 = 1; student2 < students.Count; student2++, student1++)
         {

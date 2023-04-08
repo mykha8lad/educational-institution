@@ -50,8 +50,7 @@ public class Person
         set
         {
             string phoneRegexp = @"^\(\d{3}\)\d{3}\-\d{4}$";
-            if (Regex.IsMatch(value, phoneRegexp)) _phoneNumber = value;
-            else _phoneNumber = "(000)000-0000";
+            _phoneNumber = Regex.IsMatch(value, phoneRegexp) ? value : _phoneNumber = "(000)000-0000";
         }
     }
     public DateTime Birthday

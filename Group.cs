@@ -12,7 +12,7 @@ namespace EducationInstitution;
 
 public class Group
 {
-    RandomDataForGroup _randomData = new RandomDataForGroup();
+    RandomDataForGroup _randomData = new();
     RandomDataForGroup RandomData
     {
         get => _randomData;
@@ -27,7 +27,7 @@ public class Group
             if (value == null)
                 throw new ArgumentException();
             _students = value;
-        }        
+        }
     }
 
     int _studentsInGroup = 10;
@@ -38,7 +38,7 @@ public class Group
     public int StudentsInGroup
     {
         get => _studentsInGroup;
-        set => _studentsInGroup = value;                    
+        set => _studentsInGroup = value;
     }
     public string GroupName
     {
@@ -47,7 +47,7 @@ public class Group
         {
             if (String.IsNullOrEmpty(value) || String.IsNullOrWhiteSpace(value)) throw new StringException();
             _groupName = value;
-        }            
+        }
     }
     public string GroupSpecialization
     {
@@ -56,7 +56,7 @@ public class Group
         {
             if (String.IsNullOrEmpty(value) || String.IsNullOrWhiteSpace(value)) throw new StringException();
             _groupSpecialization = value;
-        }                
+        }
     }
     public int CourseNumber
     {
@@ -65,7 +65,7 @@ public class Group
         {
             if (value < 1 || value > 5) throw new CourseNumberException();
             _courseNumber = value;
-        }                
+        }
     }
 
     public Group()
@@ -159,12 +159,7 @@ public class Group
 
     public Student this[int index]
     {
-        get
-        {
-            if (index < 0 || index > StudentsInGroup)
-                throw new IndexerCountStudentsException(StudentsInGroup - 1);
-            return Students[index];
-        }
+        get => Students[index];
         set
         {
             if (index < 0 || index > StudentsInGroup)
@@ -177,8 +172,6 @@ public class Group
         get
         {
             Student student = Students.Find(s => s.Lastname == lastname);
-            if (student == null)
-                throw new IndexerLastnameStudentException(lastname);
             return student;
         }
         set
@@ -207,9 +200,9 @@ public class Group
             {
                 phoneNumber = Faker.Phone.Number();
             } while (!Regex.IsMatch(phoneNumber, phoneRegexp));
-            Random random = new Random();
-            DateTime birthday = new DateTime(random.Next(2003, 2007), random.Next(1, 13), random.Next(1, 29));
-            Students.Add(new Student(Faker.Name.First(), Faker.Name.Last(), Faker.Name.Middle(), birthday, phoneNumber, Faker.Address.City(), Faker.Address.StreetName(), Faker.Address.ZipCode()));
+            Random random = new();
+            DateTime birthday = new(random.Next(2003, 2007), random.Next(1, 13), random.Next(1, 29));
+            Students.Add(new(Faker.Name.First(), Faker.Name.Last(), Faker.Name.Middle(), birthday, phoneNumber, Faker.Address.City(), Faker.Address.StreetName(), Faker.Address.ZipCode()));
         }
     }
     public void AddStudentInGroup(Student student) { Students.Add(student); }
@@ -470,7 +463,7 @@ public class Group
                     break;
             }
         }
-    }        
+    }
 
     string GetAllStudentsInfo()
     {
