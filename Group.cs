@@ -7,10 +7,11 @@ using Faker.Resources;
 using System.Xml.Linq;
 using ExceptionLibrary;
 using EducationInstitution.Students;
+using System.Collections;
 
 namespace EducationInstitution;
 
-public class Group
+public class Group : IEnumerable
 {
     RandomDataForGroup _randomData = new();
     RandomDataForGroup RandomData
@@ -185,6 +186,11 @@ public class Group
         }
     }
     // operator overloading
+
+    public IEnumerator GetEnumerator()
+    {
+        return new StudentEnumerator(Students);
+    }
 
     public void CreateGroup(string groupName, string groupSpecialization, int courseNumber)
     {
@@ -475,5 +481,5 @@ public class Group
         return $"Group: {GroupName}. Specialization: {GroupSpecialization}. Course: {CourseNumber}. Count students: {StudentsInGroup}\n" +
             $"--------------------------------------------------------------------------------\n" +
             $"{GetAllStudentsInfo()}\n";
-    }
+    }    
 }

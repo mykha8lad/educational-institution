@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using EducationInstitution.PersonData;
 using ExceptionLibrary;
 
 namespace EducationInstitution.Students;
 
-public class Student : Person, IComparable
+public class Student : Person
 {
     const int _numberOfSemesters = 7;
 
@@ -68,10 +69,10 @@ public class Student : Person, IComparable
         this("None", "None", "None", new DateTime(1, 1, 1), "(000)000-0000", "None", "None", "None")
     { }
 
-    public void GetSuccessfulStudent()
+    /*public void GetSuccessfulStudent()
     {
 
-    }
+    }*/    
     public double GetAverageMark()
     {
         double avgMark = 0;
@@ -131,13 +132,13 @@ public class Student : Person, IComparable
     // operator overloading
 
     // overloading CompareTo()
-    public int CompareTo(object? obj)
+    /*public int CompareTo(object? obj)
     {
         Student? student = obj as Student;
         if (GetAverageMark() > student.GetAverageMark()) return 1;
         if (GetAverageMark() < student.GetAverageMark()) return -1;
         return 0;
-    }
+    }*/
 
     public string GetListOffsetsForToString() { return string.Join(" ", Offsets); }
     public string GetListHometasksForToString() { return string.Join(" ", Hometasks); }

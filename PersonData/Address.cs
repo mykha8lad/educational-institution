@@ -20,7 +20,7 @@ public class Address
     }
     public string Street
     {
-        get => _city;
+        get => _street;
         set
         {
             if (string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value)) throw new StringException();
@@ -29,11 +29,11 @@ public class Address
     }
     public string HomeNumber
     {
-        get => _city;
+        get => _homeNumber;
         set
         {
             if (string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value)) throw new StringException();
-            _city = value;
+            _homeNumber = value;
         }
     }
 

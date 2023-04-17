@@ -2,6 +2,8 @@
 using System.Diagnostics.Metrics;
 using System.Runtime.InteropServices;
 using EducationInstitution.Students;
+using EducationInstitution.WaysComparer;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace EducationInstitution;
 
@@ -9,7 +11,6 @@ internal class Program
 {
     static void Main(string[] args)
     {
-        #region students list sort
         List<Student> students = new List<Student>();
 
         students.Add(new("Crona", "Fred", "Giovanni"));
@@ -18,27 +19,31 @@ internal class Program
         students.Add(new("Ernser", "Ezra", "Finn"));
         students.Add(new("Goldner", "Ada", "Deontae"));
 
-        students.Sort();
+        Group group = new Group();
 
+        #region using foreach for class object Group
+        foreach (Student stud in group)
+        {
+            Console.WriteLine(stud);
+        }
+        #endregion
+
+        #region sorting students by the arithmetic mean of grades
+        students.Sort(new AverageMarkComparer());
         foreach (Student student in students)
         {
-            Console.WriteLine($"Student {student.Name} - {student.GetAverageMark()}");
+            Console.WriteLine($"Student {student.Lastname} - {student.GetAverageMark()}");
         }
         #endregion
 
-        #region use static function for comparison students
-        StudentComparison(students);
-        #endregion
-    }
+        Console.WriteLine();
 
-    static void StudentComparison(List<Student> students)
-    {
-        int student1 = 0;
-        for (int student2 = 1; student2 < students.Count; student2++, student1++)
+        #region sorting students by last name in alphabetical order
+        students.Sort(new LastNameComparer());
+        foreach (Student student in students)
         {
-            if (students[student2].CompareTo(students[student1]) > 0) { Console.WriteLine($"Student {students[student2].Name} performs better than student {students[student1].Name} ({students[student2].GetAverageMark()} > {students[student1].GetAverageMark()})"); }
-            if (students[student2].CompareTo(students[student1]) < 0) { Console.WriteLine($"Student {students[student1].Name} performs better than student {students[student2].Name} ({students[student2].GetAverageMark()} < {students[student1].GetAverageMark()})"); }
-            if (students[student2].CompareTo(students[student1]) == 0) { Console.WriteLine($"Student {students[student2].Name} with the same academic performance as student {students[student1].Name} ({students[student2].GetAverageMark()} = {students[student1].GetAverageMark()})"); }
+            Console.WriteLine($"Student {student.Lastname}");
         }
+        #endregion
     }
 }
