@@ -131,15 +131,6 @@ public class Student : Person
     }
     // operator overloading
 
-    // overloading CompareTo()
-    /*public int CompareTo(object? obj)
-    {
-        Student? student = obj as Student;
-        if (GetAverageMark() > student.GetAverageMark()) return 1;
-        if (GetAverageMark() < student.GetAverageMark()) return -1;
-        return 0;
-    }*/
-
     public string GetListOffsetsForToString() { return string.Join(" ", Offsets); }
     public string GetListHometasksForToString() { return string.Join(" ", Hometasks); }
     public string GetListExamsForToString() { return string.Join(" ", Exams); }
