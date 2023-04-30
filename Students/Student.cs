@@ -72,7 +72,7 @@ public class Student : Person
     /*public void GetSuccessfulStudent()
     {
 
-    }*/    
+    }*/
     public double GetAverageMark()
     {
         double avgMark = 0;
