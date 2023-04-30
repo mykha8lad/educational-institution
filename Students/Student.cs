@@ -135,6 +135,26 @@ public class Student : Person
     public string GetListHometasksForToString() { return string.Join(" ", Hometasks); }
     public string GetListExamsForToString() { return string.Join(" ", Exams); }
 
+    public event EventHandler Overslept;
+    public event EventHandler GotMachineGun;
+    public event EventHandler PassedExamOn12;
+
+    public void SleepIn()
+    {
+        Console.WriteLine("Student overslept.");
+        Overslept?.Invoke(this, EventArgs.Empty);
+    }
+    public void GetWeapon()
+    {
+        Console.WriteLine("Student got a machine gun.");
+        GotMachineGun?.Invoke(this, EventArgs.Empty);
+    }
+    public void PassExam()
+    {
+        Console.WriteLine("Student passed the exam with a score of 12.");
+        PassedExamOn12?.Invoke(this, EventArgs.Empty);
+    }
+
     public override string ToString()
     {
         return $"ID: {Id}\n" +
